@@ -25,9 +25,10 @@ async function run() {
 
         app.get("/menus", async (req, res) => {
             const query = {};
-            const cursor = menuCollection.find(query);
-            const menus = await cursor.toArray();
+            // const cursor = menuCollection.find(query);
+            const menus = await menuCollection.find(query).toArray();
             res.send(menus);
+
         });
 
         app.get("/menus/:id", async (req, res) => {
@@ -57,9 +58,6 @@ async function run() {
 }
 
 run().catch((error) => console.error(error));
-app.get("/", (req, res) => {
-    res.send("cloud kitchen server is running");
-});
 
 app.get('/', (req, res) => {
     res.send('cloud kitchen server is running')
